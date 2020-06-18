@@ -25,18 +25,18 @@ html, body {
       const chunkWidthInPixels = chunkSizeInTiles * fontWidth
       const chunkHeightInPixels = chunkSizeInTiles * fontHeight
 
-      const mapWidthInTiles = 128 * 16
-      const mapHeightInTiles = 128 * 16
+      const mapWidthInTiles = 129 * 16
+      const mapHeightInTiles = 129 * 16
       const mapWidthInPixels = mapWidthInTiles * fontWidth
       const mapHeightInPixels = mapHeightInTiles * fontHeight
 
-      const maxZoom = 6
+      const maxZoom = 7
 
       const mymap = L.map('mapid', {
         crs: L.CRS.Simple,
       })
 
-      mymap.setMaxZoom(6)
+      mymap.setMaxZoom(maxZoom)
       const bounds = [[-chunkSizeInTiles*fontHeight, 0], [0, chunkSizeInTiles*fontWidth]]
       mymap.setMaxBounds(bounds)
       mymap.setView([0, 0], 2)
