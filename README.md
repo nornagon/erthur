@@ -1,7 +1,11 @@
 # Êrthur, The Infinite Universe
 
-Êrthur is a tool to extract a high-resolution embark map of an entire [Dwarf
-Fortress](https://bay12games.com/dwarves/) world.
+Êrthur is a tool to extract a high-resolution, zoomable embark map of an entire
+[Dwarf Fortress](https://bay12games.com/dwarves/) world.
+
+Here's an [example](https://nornagon.github.io/erthur/index.html).
+
+[![](https://i.imgur.com/j65UtXg.png)](https://nornagon.github.io/erthur/index.html)
 
 It's not in a well-packaged format for ease of use currently, but if you'd like
 to try it out for yourself despite that, here's a description of the parts
