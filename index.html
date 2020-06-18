@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+      <script>
+      L_DISABLE_3D = true;
+      </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<style>
+#mapid {
+  height: 100vh;
+}
+html, body {
+  margin: 0;
+}
+</style>
+  </head>
+  <body>
+    <div id="mapid"></div>
+
+    <script>
+      const chunkSizeInTiles = 32
+      const fontWidth = 9
+      const fontHeight = 9
+      const chunkWidthInPixels = chunkSizeInTiles * fontWidth
+      const chunkHeightInPixels = chunkSizeInTiles * fontHeight
+
+      const mapWidthInTiles = 128 * 16
+      const mapHeightInTiles = 128 * 16
+      const mapWidthInPixels = mapWidthInTiles * fontWidth
+      const mapHeightInPixels = mapHeightInTiles * fontHeight
+
+      const maxZoom = 6
+
+      const mymap = L.map('mapid', {
+        crs: L.CRS.Simple,
+      })
+
+      mymap.setMaxZoom(6)
+      const bounds = [[-chunkSizeInTiles*fontHeight, 0], [0, chunkSizeInTiles*fontWidth]]
+      mymap.setMaxBounds(bounds)
+      mymap.setView([0, 0], 2)
+      mymap.on('click', (ev) => {
+        console.log(ev.latlng)
+      })
+
+      L.tileLayer('./tiles/{z}/{x}/{y}.png', {
+        maxZoom,
+        noWrap: true,
+        tileSize: L.point(chunkWidthInPixels, chunkHeightInPixels),
+        bounds,
+      }).addTo(mymap)
+    </script>
+  </body>
+</html>
