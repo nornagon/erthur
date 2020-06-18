@@ -32,17 +32,18 @@ html, body {
 
       const maxZoom = 7
 
+      const rootChunkNumTiles = Math.pow(2, maxZoom) * chunkSizeInTiles
+      const mapWidthAsProportionOfRootChunk = mapWidthInTiles / rootChunkNumTiles
+      const mapHeightAsProportionOfRootChunk = mapHeightInTiles / rootChunkNumTiles
+
       const mymap = L.map('mapid', {
         crs: L.CRS.Simple,
       })
 
       mymap.setMaxZoom(maxZoom)
-      const bounds = [[-chunkSizeInTiles*fontHeight, 0], [0, chunkSizeInTiles*fontWidth]]
+      const bounds = [[-chunkHeightInPixels*mapHeightAsProportionOfRootChunk, 0], [0, chunkHeightInPixels*mapHeightAsProportionOfRootChunk]]
       mymap.setMaxBounds(bounds)
       mymap.setView([0, 0], 2)
-      mymap.on('click', (ev) => {
-        console.log(ev.latlng)
-      })
 
       L.tileLayer('./tiles/{z}/{x}/{y}.png', {
         maxZoom,
